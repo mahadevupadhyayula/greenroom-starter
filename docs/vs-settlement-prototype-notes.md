@@ -33,3 +33,12 @@
 ## Demo Script
 
 ## Validation Log
+
+### 2026-05-21 — Stage 1 (Deal notes parser)
+- Added deterministic `parseDealNotes` parser with explicit extraction for guarantee, percentage, basis, expense cap, hospitality cap, plus ambiguity/blocker/warning metadata.
+- Added fixture-driven parser test coverage for standard, ambiguity, conflict, and non-standard term cases.
+- Added `npm run test:parser` script.
+- Validation results:
+  - `npm run test:parser` ✅ passed (6/6 cases)
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed after removing Google font network dependency from `app/layout.tsx`

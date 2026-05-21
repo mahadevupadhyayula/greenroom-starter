@@ -178,6 +178,18 @@
   - `npm run db:reset` ✅ passed
   - `npm run dev` ✅ started successfully; manually validated `/shows/show_0003/settle` renders Vs settlement content
 
+
+### 2026-05-21 — Parser robustness update (Phase A + B hardening)
+- Added text normalization in `parseDealNotes` to standardize unicode dashes, canonicalize shorthand forms (`g'tee`/`gtee`, `hosp`), and collapse whitespace before extraction.
+- Replaced single-pattern guarantee/cap matching with candidate-based extraction across ordered phrase variants (amount-before-label, label-before-amount, leading amount before `vs`, `expenses capped`, `expenses to`, bare `hospitality $X`, etc.).
+- Added duplicate-candidate deduplication to avoid repeated evidence from overlapping regex patterns.
+- Added ambiguity handling for guarantee/expense/hospitality fields when distinct numeric candidates are present.
+- Added parser fixture regressions for representative real-world variants:
+  - `$2,447 guarantee vs 85% ... Expenses capped $1200 ... Hospitality cap $500`
+  - `7,130 g'tee vs 75% ... Expenses to 3550 ... Hospitality $600`
+- Validation results:
+  - `npm run test:parser` ✅ passed (8/8 cases)
+  - `npm run test:all` ✅ passed
 ### 2026-05-21 — Stage 7 (Final documentation and demo script)
 - Completed reviewer-facing documentation across problem framing, MVP scope, implementation summary, behavior notes, limitations, exclusions, and demo flow.
 - Added a consolidated artifact inventory (files added/modified) and explicit command list for reproducible validation.

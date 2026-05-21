@@ -98,4 +98,32 @@ export const parserCases: ParserCase[] = [
       hasNonStandard: false,
     },
   },
+  {
+    name: "guarantee amount before label with capped expenses",
+    notes: "$2,447 guarantee vs 85% of net after expenses, whichever greater. Expenses capped $1200. Hospitality cap $500.",
+    expected: {
+      guarantee: 2447,
+      percentage: 85,
+      basis: "net",
+      expenseCap: 1200,
+      hospitalityCap: 500,
+      hasAmbiguity: false,
+      hasBlocker: false,
+      hasNonStandard: false,
+    },
+  },
+  {
+    name: "gtee shorthand and expenses to / hospitality bare amount",
+    notes: "7,130 g'tee vs 75% of net. Expenses to 3550. Hospitality $600.",
+    expected: {
+      guarantee: 7130,
+      percentage: 75,
+      basis: "net",
+      expenseCap: 3550,
+      hospitalityCap: 600,
+      hasAmbiguity: false,
+      hasBlocker: false,
+      hasNonStandard: false,
+    },
+  },
 ];

@@ -42,3 +42,14 @@
   - `npm run test:parser` ✅ passed (6/6 cases)
   - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
   - `npm run build` ✅ passed after removing Google font network dependency from `app/layout.tsx`
+
+### 2026-05-21 — Stage 2 (Structured-vs-notes comparison)
+- Added `compareStructuredToNotes` comparison module with explicit field-level statuses: `match`, `mismatch`, `missing_structured`, `missing_notes`, and `ambiguous`.
+- Added severity mapping by field criticality: core fields (`guaranteeAmount`, `percentage`, `percentageBasis`) escalate to blockers; cap fields map to warnings.
+- Added percentage normalization to support structured percentages represented as either decimal fractions (e.g. `0.85`) or whole percent values (e.g. `85`).
+- Added Stage 2 test coverage for match/mismatch/missing/ambiguous paths and cap warning behavior.
+- Validation results:
+  - `npm run test:comparison` ✅ passed
+  - `npm run test:parser` ✅ passed (6/6 cases)
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed

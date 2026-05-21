@@ -65,3 +65,17 @@
   - `npm run test:parser` ✅ passed (6/6 cases)
   - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
   - `npm run build` ✅ passed
+
+### 2026-05-21 — Stage 4 (Standard Vs settlement calculation)
+- Added `calculateStandardVsSettlement` in `lib/vsSettlement.ts` to compute payout for supported standard Vs deals only, with explicit manual-review non-calculating fallbacks.
+- Preserved existing `flat` and `percentage_of_gross` behavior by isolating Stage 4 logic in a new module and adding `canReuseLegacySettlement` helper.
+- Implemented settlement math coverage for guarantee-vs-percentage winner selection, percentage normalization, expense cap handling, and negative-net floor-at-zero behavior.
+- Added audit-trail output for calculation traceability and reviewer verification.
+- Added `tests/vsSettlementCalculation.test.ts` and `npm run test:calculation` script for Stage 4 validation coverage.
+- Validation results:
+  - `npm run test:calculation` ✅ passed
+  - `npm run test:classification` ✅ passed
+  - `npm run test:comparison` ✅ passed
+  - `npm run test:parser` ✅ passed (6/6 cases)
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed

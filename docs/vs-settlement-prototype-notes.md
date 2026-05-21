@@ -79,3 +79,15 @@
   - `npm run test:parser` ✅ passed (6/6 cases)
   - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
   - `npm run build` ✅ passed
+
+### 2026-05-21 — Stage 5 (UI components)
+- Added standalone Vs settlement UI components under `components/settlement/`:
+  - `VsSettlementWorksheet` for supported and manual-review rendering states.
+  - `DealAttributeComparison` table view for structured-vs-notes field status output.
+  - `SettlementFlags` section for blockers, warnings, and assumptions.
+  - `SettlementAuditTrail` section for reviewer-facing calculation/manual-review trace steps.
+- Added `npm run test:all` script to satisfy Stage 5 validation gate and run all existing Vs prototype test suites in sequence.
+- Validation results:
+  - `npm run test:all` ✅ passed
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed

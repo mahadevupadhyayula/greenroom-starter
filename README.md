@@ -12,6 +12,14 @@ This is the starter codebase for the Greenroom Applied AI PM case study.
 
 You're looking at a working but mediocre product. It's enough to feel real, but every workflow has gaps. **Your job isn't to fix everything — it's to pick a slice and design it well.** See your case study brief for full instructions.
 
+
+## Vs settlement prototype docs
+
+For reviewers evaluating the Vs settlement prototype workstream:
+
+- Execution plan (staged scope and gates): [`docs/vs-settlement-execution-plan.md`](docs/vs-settlement-execution-plan.md)
+- Implementation notes + validation history + demo script: [`docs/vs-settlement-prototype-notes.md`](docs/vs-settlement-prototype-notes.md)
+
 ## Before you start
 
 You'll need:

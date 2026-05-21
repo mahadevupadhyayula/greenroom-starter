@@ -265,3 +265,12 @@ If you're stuck, email the hiring contact. We'd rather you ask than burn an hour
 ---
 
 Welcome to The Crescent.
+
+## Prototype notes
+
+This fork includes a notes-first Vs settlement prototype planning framework for the Greenroom case study.
+
+Read the documentation here:
+
+- [Vs Settlement Execution Plan](./docs/vs-settlement-execution-plan.md)
+- [Vs Settlement Prototype Notes](./docs/vs-settlement-prototype-notes.md)

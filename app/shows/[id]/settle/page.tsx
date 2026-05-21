@@ -23,6 +23,11 @@ import {
 } from "@/components/ui/card";
 import { StatusBadge, DealTypeBadge, PlainBadge } from "@/components/ui/badge";
 import { calculateSettlement } from "@/lib/dealMath";
+import { parseDealNotes } from "@/lib/dealNotesParser";
+import { compareStructuredToNotes } from "@/lib/dealAttributeComparison";
+import { classifyVsDeal } from "@/lib/vsDealClassification";
+import { calculateStandardVsSettlement } from "@/lib/vsSettlement";
+import { VsSettlementWorksheet } from "@/components/settlement/VsSettlementWorksheet";
 import {
   formatMoney,
   formatShowDateFull,
@@ -78,6 +83,31 @@ export default async function SettlePage({
   const isDisputed = settlement?.status === "disputed" || settlement?.status === "revised" || !!settlement?.disputedAt;
   const disputedRecoupValue = disputedRecoups.reduce((s, r) => s + r.amount, 0);
 
+  const isVsDeal = deal.dealType === "vs";
+  const vsNotes = deal.dealNotesFreetext ?? "";
+  const vsParsedNotes = parseDealNotes(vsNotes);
+  const vsComparison = compareStructuredToNotes(
+    {
+      guaranteeAmount: deal.guaranteeAmount,
+      percentage: deal.percentage,
+      percentageBasis: deal.percentageBasis,
+      expenseCap: deal.expenseCap,
+      hospitalityCap: deal.hospitalityCap,
+    },
+    vsParsedNotes,
+  );
+  const vsClassification = classifyVsDeal({
+    parsedNotes: vsParsedNotes,
+    comparison: vsComparison,
+  });
+  const vsSettlement = calculateStandardVsSettlement({
+    classification: vsClassification,
+    comparison: vsComparison,
+    parsedNotes: vsParsedNotes,
+    grossBoxOffice: grossSoFar,
+    totalExpenses,
+  });
+
   return (
     <div className={`px-12 py-10 max-w-7xl ${isDisputed ? "bg-gradient-to-b from-rose-50/30 via-canvas to-canvas" : ""}`}>
       <BackLink showId={show.id} />
@@ -127,7 +157,13 @@ export default async function SettlePage({
       )}
 
       <div className="space-y-6 mt-6">
-        {!calc.supported ? (
+        {isVsDeal ? (
+          <VsSettlementWorksheet
+            classification={vsClassification}
+            comparison={vsComparison}
+            settlement={vsSettlement}
+          />
+        ) : !calc.supported ? (
           <UnsupportedDeal
             dealType={calc.dealType}
             deal={deal}

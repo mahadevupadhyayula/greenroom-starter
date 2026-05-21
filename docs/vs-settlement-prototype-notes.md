@@ -91,3 +91,14 @@
   - `npm run test:all` ✅ passed
   - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
   - `npm run build` ✅ passed
+
+### 2026-05-21 — Stage 6 (Settlement page integration)
+- Integrated a Vs-specific settlement branch into `app/shows/[id]/settle/page.tsx`.
+- Added page-level Vs pipeline wiring to parse notes, compare structured-vs-notes attributes, classify support/manual-review, and compute standard Vs settlement outcomes.
+- Rendered `VsSettlementWorksheet` for `dealType === "vs"` while preserving existing supported and unsupported flows for all non-Vs deal types.
+- Validation results:
+  - `npm run test:all` ✅ passed
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed
+  - `npm run db:reset` ✅ passed
+  - `npm run dev` ✅ started successfully; manually validated `/shows/show_0003/settle` renders Vs settlement content

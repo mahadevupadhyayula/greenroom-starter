@@ -13,7 +13,8 @@
     "db:studio": "drizzle-kit studio",
     "test:parser": "tsx tests/dealNotesParser.test.ts",
     "test:comparison": "tsx tests/dealAttributeComparison.test.ts",
-    "test:classification": "tsx tests/vsDealClassification.test.ts"
+    "test:classification": "tsx tests/vsDealClassification.test.ts",
+    "test:calculation": "tsx tests/vsSettlementCalculation.test.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",

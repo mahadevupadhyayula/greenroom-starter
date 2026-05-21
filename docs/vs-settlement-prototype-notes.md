@@ -53,3 +53,15 @@
   - `npm run test:parser` ✅ passed (6/6 cases)
   - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
   - `npm run build` ✅ passed
+
+### 2026-05-21 — Stage 3 (Vs deal classification)
+- Added `classifyVsDeal` classification module to route deals to `supported` vs `manual_review` with aggregated `reasons`, `blockers`, `warnings`, and `assumptions`.
+- Implemented manual-review routing for non-standard terms, structured-vs-notes conflicts, and insufficient/ambiguous note data by consuming Stage 1 parser blockers and Stage 2 comparison blockers.
+- Added Stage 3 coverage for supported standard scenarios, non-standard term routing, conflict routing, and insufficient-data routing.
+- Added `npm run test:classification` script.
+- Validation results:
+  - `npm run test:classification` ✅ passed
+  - `npm run test:comparison` ✅ passed
+  - `npm run test:parser` ✅ passed (6/6 cases)
+  - `npm run lint` ✅ passed with pre-existing warnings in `db/seed.ts` (unused vars)
+  - `npm run build` ✅ passed

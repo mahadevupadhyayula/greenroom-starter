@@ -12,7 +12,8 @@
     "db:reset": "rm -f data/greenroom.db && drizzle-kit push && tsx db/seed.ts",
     "db:studio": "drizzle-kit studio",
     "test:parser": "tsx tests/dealNotesParser.test.ts",
-    "test:comparison": "tsx tests/dealAttributeComparison.test.ts"
+    "test:comparison": "tsx tests/dealAttributeComparison.test.ts",
+    "test:classification": "tsx tests/vsDealClassification.test.ts"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
